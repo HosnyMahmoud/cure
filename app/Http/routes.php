@@ -47,6 +47,7 @@ Route::group(['middleware' => 'authAdmin'], function()
 	Route::resource('admin/videos','VideosCtrl');
 	Route::resource('admin/reservations','ReservationCtrl');
 	Route::resource('admin/testimonials','TestimonialsCtrl');
+	Route::resource('admin/clinic','ClinicCtrl');
 
 	Route::resource('admin/pages','PagesCtrl');
 	Route::get('admin/pages/{id}/delete','PagesCtrl@destroy');

@@ -578,6 +578,12 @@ License: You must have a valid license purchased only from themeforest(the above
 						<span class="title">معرض الفيديو</span>
 						</a>
 					</li>
+					<li class="{{Request::is('clinic/*') ? 'active' : ''}}">
+						<a href="{!!Url('/')!!}/admin/clinic">
+						<i class="fa fa-film"></i>
+						<span class="title">الشركاء</span>
+						</a>
+					</li>
 					
 					<li class="last hidden">
 						<a href="javascript:;">
