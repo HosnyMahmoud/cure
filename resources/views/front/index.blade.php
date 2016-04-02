@@ -146,7 +146,6 @@
     <section class="pragraph">
         <div class="container">
             <div class="row">
-                @if(count($blog)>0)
                 <div class="col-md-6">
                     <h4>{!!Lang::get('index.latest')!!}</h4>
                     <div class="right-slider">
@@ -157,7 +156,6 @@
                         </div>
                     </div>
                 </div>
-                @endif
                 <div class="col-md-6">
                     <h4>{!!Lang::get('index.comments')!!}</h4>
                     <div class="left-slider">
