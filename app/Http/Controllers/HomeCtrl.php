@@ -10,6 +10,7 @@ use App\Services;
 use App\About;
 use App\Blog;
 use App\Slider;
+use App\Testimonials;
 
 class HomeCtrl extends Controller {
 
@@ -26,8 +27,10 @@ class HomeCtrl extends Controller {
 		$services = Services::take(4)->get();
 		$blog = Blog::latest('created_at')->take(5)->get();
 		$slider = Slider::latest('created_at')->get();
+		$testimonials = Testimonials::latest('created_at')->take(5)->get();
 
-		return View('front.index',compact('images','videos','services','about','blog','slider'));
+
+		return View('front.index',compact('images','videos','services','about','blog','slider','testimonials'));
 	}
 
 	/**

@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\testimonials;
+use App\Testimonials;
 class TestimonialsCtrl extends Controller {
 
 	/**
@@ -15,7 +15,7 @@ class TestimonialsCtrl extends Controller {
 	 */
 	public function index()
 	{
-		$testimonials = testimonials::paginate(10);
+		$testimonials = Testimonials::paginate(10);
 		return View('admin.testimonials.index',compact('testimonials'));
 	}
 
@@ -34,9 +34,10 @@ class TestimonialsCtrl extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		Testimonials::create($request->all());
+		return redirect()->to('/admin/testimonials');
 	}
 
 	/**
@@ -58,7 +59,8 @@ class TestimonialsCtrl extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$testimonials = Testimonials::findOrFail($id);
+		return View('admin.testimonials.edit',compact('testimonials'));
 	}
 
 	/**
@@ -67,9 +69,12 @@ class TestimonialsCtrl extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id,Request $request)
 	{
-		//
+		$testimonials = Testimonials::findOrFail($id);
+		$testimonials->update($request->all());
+		return redirect()->to('/admin/testimonials');
+
 	}
 
 	/**
@@ -80,7 +85,9 @@ class TestimonialsCtrl extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$testimonials = Testimonials::findOrFail($id);
+		$testimonials->delete();
+		return redirect()->to('/admin/testimonials');
 	}
 
 }

@@ -146,6 +146,7 @@
     <section class="pragraph">
         <div class="container">
             <div class="row">
+                @if(count($blog)>0)
                 <div class="col-md-6">
                     <h4>{!!Lang::get('index.latest')!!}</h4>
                     <div class="right-slider">
@@ -156,26 +157,26 @@
                         </div>
                     </div>
                 </div>
+                @endif
+
+                @if(count($testimonials)>0)
                 <div class="col-md-6">
                     <h4>{!!Lang::get('index.comments')!!}</h4>
                     <div class="left-slider">
                         <div id="slider-3" class="owl-carousel">
                             <!-- <div class="cust-img"> <img class="img-responsive" src="img/user-face.jpg"> </div>-->
+                            @foreach($testimonials as $test)
                             <div class="item">
                                 <div class="detal">
-                                    <h3>will smith</h3>
-                                    <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
+                                    <h3>{!!$test['name_'.Session::get('local')]!!}</h3>
+                                    <p>{!!$test['text_'.Session::get('local')]!!}</p>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="detal">
-                                    <h3>will smith</h3>
-                                    <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's </p>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </section>

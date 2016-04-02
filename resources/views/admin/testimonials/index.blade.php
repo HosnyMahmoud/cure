@@ -36,9 +36,7 @@
 					<th>
 						 الإسم
 					</th>
-					<th class="numeric">
-						 النص
-					</th>
+					
 					
 					<th class="numeric">
 						 خيارات
@@ -62,11 +60,11 @@
 				
 					<td class="numeric">
 						<span>
-						{!! Form::open(['action' => ['testimonialsCtrl@destroy', $testimonials->id], 'method' => 'delete']) !!}
-						<a href="{!!Url('/')!!}/admin/slider/{!! $slide->id !!}/edit" class="btn btn-icon-only red">
+						{!! Form::open(['action' => ['TestimonialsCtrl@destroy', $slide->id], 'method' => 'delete']) !!}
+						<a href="{!!Url('/')!!}/admin/testimonials/{!! $slide->id !!}/edit" class="btn btn-icon-only red">
 							<i class="fa fa-edit"></i>
 						</a>
-						<button href="{!!Url('/')!!}/admin/slider/{!! $slide->id !!}/delete" class="btn btn-icon-only purple" onClick="return confirm('Are you sure to delete slide : {!! $slide->name !!} ?')">
+						<button href="{!!Url('/')!!}/admin/testimonials/{!! $slide->id !!}/delete" class="btn btn-icon-only purple" onClick="return confirm('متأكد من الحذف ؟')">
 							<i class="fa fa-times"></i>
 						</button>
 						{!! Form::close() !!}
@@ -76,8 +74,8 @@
 				@endforeach
 				</tbody>
 				</table>
-				{!! Form::close() !!}
-				{!! $testimonials->render(); !!}
+
+				{!! $testimonials->render() !!}
 				@else
 				<h1 class="text-center" style="color:silver">لا يوجد سلايدات بعد !</h1>
 				@endif
