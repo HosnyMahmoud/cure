@@ -1,6 +1,6 @@
 @extends('admin.layout')
 	@section('title')
-	Edit Images
+	تعديل الصورة
 	@endsection
 	@if (count($errors) > 0)
 			<div class="alert alert-danger">

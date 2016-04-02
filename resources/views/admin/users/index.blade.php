@@ -1,12 +1,12 @@
  @extends('admin.layout')
 
 	@section('title')
-	Slides
+	الاعضاء
 	@endsection
 
 	@section('content')
 	
-	<a href="{!! Url('/') !!}/admin/parteners/create"  data-container="body" data-placement="right" data-original-title="Create New Page" class="btn btn-icon-only green tooltips">
+	<a href="{!! Url('/') !!}/admin/users/create"  data-container="body" data-placement="right" data-original-title="Create New Page" class="btn btn-icon-only green tooltips">
 		<i class="fa fa-plus"></i>
 	</a>
 	<div class="logo">&ensp;

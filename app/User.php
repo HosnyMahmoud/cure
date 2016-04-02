@@ -31,4 +31,24 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+	public static $rules =[
+		'firstname.required'=>'الاسم الاول مطلوب',
+		'firstname.unique'=>' الاسم الاول مستخدم من قبل',
+		'lastname.required'=>'الاسم الاخبر مطلوب',
+		'lastname.unique'=>'الاسم الاخير مستخدم من قبل',
+		'password.required'=>'كلمة المرور',
+		'phone.required'=>'رقم الهاتف مطلوب',
+		'email.required'=>'البريد الالكترونى مطلوب',
+		'email.email'=>'يجب ادخال البريد الالكترونى بطريقة صحيحة',
+	];
+	public static $rule =[
+		'firstname.required'=>'الاسم الاول مطلوب',
+		'firstname.unique'=>' الاسم الاول مستخدم من قبل',
+		'lastname.required'=>'الاسم الاخبر مطلوب',
+		'lastname.unique'=>'الاسم الاخير مستخدم من قبل',
+		'phone.required'=>'رقم الهاتف مطلوب',
+		'email.required'=>'البريد الالكترونى مطلوب',
+		'email.email'=>'يجب ادخال البريد الالكترونى بطريقة صحيحة',
+	];
+
 }

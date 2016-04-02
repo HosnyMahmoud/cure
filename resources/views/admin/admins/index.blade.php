@@ -1,4 +1,7 @@
 @extends('admin.layout')
+@section('title')
+		المديرين 
+@endsection
 	@section('content')
 	<a href="{!!Url('/')!!}/admin/admins/create" class="btn btn-success"><i class="fa fa-plus"></i></a>
 	<br>

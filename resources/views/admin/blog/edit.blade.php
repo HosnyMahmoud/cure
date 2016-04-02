@@ -1,6 +1,6 @@
 @extends('admin.layout')
 	@section('title')
-	تعديا الخبر
+	تعديل الخبر
 	@endsection
 	@section('content')
 	<div class="col-lg-10">

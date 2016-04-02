@@ -39,23 +39,34 @@ class SliderCtrl extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$rules = array('background' => 'image');
-    	$input = ['background'=>$request->file('background')];
-    	$validator = Validator::make($input, $rules);
-    	if ($validator->fails())
-	    {
-	        return Redirect::back()->withErrors($validator);
-	    }else{
-	    	$ext = $request->file('background')->getClientOriginalExtension();
-	    	$request->file('background')->move('uploads/slider','back-'.time().'.'.$ext);
-	    	$clients = Slider::create(['background'=>'back-'.time().'.'.$ext,
-							    		'head_ar'=>$request->head_ar,
-							    		'head_en'=>$request->head_en,
-							    		'text_ar'=>$request->text_ar,
-							    		'text_en'=>$request->text_en,
-	    		]);
-    		return Redirect::to(Url('/').'/admin/slider');
-	    }
+		$validator = Validator::make($request->all(),[
+  				'background'            	=> 'required',
+  				'head_ar'            	=> 'required',
+			    'head_en'       	=> 'required',
+			    'text_ar'       	=> 'required',
+			    'text_en'       	=> 'required',
+			],Slider::$rules);
+		if($validator->fails()){
+			return redirect()->back()->withErrors($validator)->withInput();
+		}else{
+			$rules = array('background' => 'image');
+	    	$input = ['background'=>$request->file('background')];
+	    	$validator = Validator::make($input, $rules);
+	    	if ($validator->fails())
+		    {
+		        return Redirect::back()->withErrors($validator);
+		    }else{
+		    	$ext = $request->file('background')->getClientOriginalExtension();
+		    	$request->file('background')->move('uploads/slider','back-'.time().'.'.$ext);
+		    	$clients = Slider::create(['background'=>'back-'.time().'.'.$ext,
+								    		'head_ar'=>$request->head_ar,
+								    		'head_en'=>$request->head_en,
+								    		'text_ar'=>$request->text_ar,
+								    		'text_en'=>$request->text_en,
+		    		]);
+	    		return Redirect::to(Url('/').'/admin/slider');
+		    }
+		}    
 	}
 
 	/**
@@ -79,29 +90,39 @@ class SliderCtrl extends Controller {
 	public function update($id,Request $request)
 	{
 		$slides = Slider::findOrFail($id);
-		if($request->hasfile('background')){
-			$rules = array(
-        	'background' => 'image',
-	    	);
-	    	$input = ['background'=>$request->file('background')];
-	    	$validator = Validator::make($input, $rules);
-	    	if ($validator->fails())
-		    {
-		        return Redirect::back()->withErrors($validator);
-		    }else{
-		    	$ext = $request->file('background')->getClientOriginalExtension();
-		    	$request->file('background')->move('uploads/slider','back-'.time().'.'.$ext);
-		    	$slides->update(['background'=>'back-'.time().'.'.$ext,
-								 'head_ar'=>$request->head_ar,
-							     'head_en'=>$request->head_en,
-							     'text_ar'=>$request->text_ar,
-							     'text_en'=>$request->text_en,
-    					]);
-	    		return Redirect::to(Url('/').'/admin/slider');
-		    }
+		$validator = Validator::make($request->all(),[
+  				'head_ar'            	=> 'required',
+			    'head_en'       	=> 'required',
+			    'text_ar'       	=> 'required',
+			    'text_en'       	=> 'required',
+			],Slider::$rules);
+		if($validator->fails()){
+			return redirect()->back()->withErrors($validator)->withInput();
+		}else{
+			if($request->hasfile('background')){
+				$rules = array(
+	        	'background' => 'image',
+		    	);
+		    	$input = ['background'=>$request->file('background')];
+		    	$validator = Validator::make($input, $rules);
+		    	if ($validator->fails())
+			    {
+			        return Redirect::back()->withErrors($validator);
+			    }else{
+			    	$ext = $request->file('background')->getClientOriginalExtension();
+			    	$request->file('background')->move('uploads/slider','back-'.time().'.'.$ext);
+			    	$slides->update(['background'=>'back-'.time().'.'.$ext,
+									 'head_ar'=>$request->head_ar,
+								     'head_en'=>$request->head_en,
+								     'text_ar'=>$request->text_ar,
+								     'text_en'=>$request->text_en,
+	    					]);
+		    		return Redirect::to(Url('/').'/admin/slider');
+			    }
+			}
+			$slides->update($request->all());
+		    return Redirect::to(Url('/').'/admin/slider');
 		}
-		$slides->update($request->all());
-	    return Redirect::to(Url('/').'/admin/slider');
 	}
 
 	/**

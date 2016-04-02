@@ -1,6 +1,6 @@
 @extends('admin.layout')
 	@section('title')
-	Add Page
+	اضافة صفحة
 	@endsection
 	@section('content')
 		{!! Form::open(['method' => 'POST', 'action' => 'PagesCtrl@store', 'class' => 'form-body']) !!}

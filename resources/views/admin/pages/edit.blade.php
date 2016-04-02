@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 	@section('title')
-	Edit Page
+	تعديل الصفحة
 	@endsection
 
 	@section('content')

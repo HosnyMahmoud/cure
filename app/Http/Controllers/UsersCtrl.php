@@ -36,32 +36,19 @@ class UsersCtrl extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$message= [
-		'unique'=>':attribute مستخدم من قبل',
-		'confirmed' => ' كلمتان السر غير متطابقتان'
-		];
+
 		$validator =  Validator::make($request->all(), [
-			'profile_pic' =>'image',
-			'username' =>'unique:users',
-			'email' =>'unique:users',
+			'firstname' =>'required|unique:users',
+			'lastname' =>'required',
 			'password' =>'required',
-		],$message);
+			'phone' =>'required',
+			'email' =>'required|email',
+		],User::$rules);
 		if($validator->fails()){
 			return redirect()->back()->withErrors($validator)->withInput();
 		}else{
-			if($request->hasFile('profile_pic'))
-			{
-				$file = $request->file('profile_pic');
-				$filename  = time() . '.' . $file->getClientOriginalExtension();
-            	$file->move('uploads/profiles', $filename);
-			}
 			$request->merge(['password'=>bcrypt($request->password)]);
 			$user =  User::create($request->all());
-			if($request->hasFile('profile_pic'))
-			{
-			$users = User::findOrFail($user->id);
-			$users->update(['profile_pic'=>$filename]);
-			}
 			return redirect()->to('admin/users');			
 		}
 	}
@@ -98,21 +85,15 @@ class UsersCtrl extends Controller {
 	public function update(Request $request,$id)
 	{
 		$user = User::findOrFail($id);
-		$message= [
-		'unique'=>':attribute مستخدم من قبل',
-		];
 		$validator =  Validator::make($request->all(), [
-			'profile_pic' =>'image',
-		],$message);
+			'firstname' =>'required',
+			'lastname' =>'required',
+			'phone' =>'required',
+			'email' =>'required|email',
+		],User::$rule);
 		if($validator->fails()){
 			return redirect()->back()->withErrors($validator)->withInput();
 		}else{
-			if($request->hasFile('profile_pic'))
-			{
-				$file = $request->file('profile_pic');
-				$filename  = time() . '.' . $file->getClientOriginalExtension();
-            	$file->move('uploads/profiles', $filename);
-			}
 			if($request->password !== "")
 			{
 				$request->merge(['password'=>bcrypt($request->password)]);
@@ -123,11 +104,6 @@ class UsersCtrl extends Controller {
 
 			}
 			$user->update($request->all());
-			if($request->hasFile('profile_pic'))
-			{
-			$users = User::findOrFail($user->id);
-			$users->update(['profile_pic'=>$filename]);
-			}
 			return redirect()->to('admin/users');			
 			
 		}

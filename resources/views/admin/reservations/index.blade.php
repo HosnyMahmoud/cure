@@ -7,9 +7,6 @@
 
 	@section('content')
 	
-	<a href="{!! Url('/') !!}/admin/reservations/create"  data-container="body" data-placement="right" data-original-title="Create New Page" class="btn btn-icon-only green tooltips">
-		<i class="fa fa-plus"></i>
-	</a>
 	<div class="logo">&ensp;
 	</div>
 		<div class="portlet box green">

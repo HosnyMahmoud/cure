@@ -1,4 +1,7 @@
 @extends('admin.layout')
+@section('title')
+		اضافة مدير 
+@endsection
 @section('content')
 <div class="container-fluid">
 	<div class="row">

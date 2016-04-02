@@ -1,7 +1,7 @@
 <?php use App\Pages; ?>
 @extends('admin.layout')
 	@section('title')
-	الصفخات
+	الصفحات
 	@endsection
 
 	@section('content')
@@ -42,9 +42,6 @@
 					<th>
 						 اسم الصفحه
 					</th>
-					<th class="numeric">
-						 الصفحات الفرعيه
-					</th>
 					
 					<th class="numeric">
 						 خيايرات
@@ -68,26 +65,6 @@
 						</a>
 					</td>
 					
-					<td class="numeric">
-						<?php $subpages = Pages::where('ct_id', $security->id)->orderby('sort')->get() ?>
-						@if(count($subpages)>0)
-						<ol>
-							@foreach($subpages->take(3) as $sp)
-							<li><a href="{!! Url('/') !!}/admin/pages/{!! $sp->id !!}">
-							 {!! str_limit($sp->title_ar, $limit = 25, $end = ' ...') !!}
-							</a></li>
-							@endforeach
-							@if(count($subpages)>3)
-								<a href="{!! Url('/') !!}/admin/pages/{!! $security->id !!}">
-								 المزيد
-								</a>
-							@endif
-						</ol>
-						
-						@else
-						0
-						@endif
-					</td>
 					<td class="numeric">
 						<a href="{!!Url('/')!!}/admin/pages/{!! $security->id !!}/edit" class="btn btn-icon-only red">
 							<i class="fa fa-edit"></i>

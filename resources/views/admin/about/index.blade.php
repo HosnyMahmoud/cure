@@ -1,4 +1,7 @@
 @extends('admin.layout')
+	@section('title')
+		معلومات عنا 
+	@endsection
 	@section('content')
 		<div class="portlet-body">
 			<div class="table-responsive">

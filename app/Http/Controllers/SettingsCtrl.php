@@ -21,17 +21,47 @@ class SettingsCtrl extends Controller {
 
 	public function update(Request $request,$id=1)
 	{
-		$settings= Settings::findOrFail($id);
-		$message = ['url'=>'يجب ان يبدأ :attribute بــ http:// or https://'];
-		$validator =  Validator::make($request->all(), [
-			'facebook_group' =>'url',
-			'facebook_page' =>'url',
-		],$message);
-		if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }else{   
-			$settings->update($request->all());
-			return redirect()->back()->with('message','Success');;
+		$validator = Validator::make($request->all(),[
+  				'siteName_ar'            	=> 'required',
+  				'siteName_en'            	=> 'required',
+  				'siteDisc_ar'            	=> 'required',
+  				'siteDisc_en'            	=> 'required',
+  				'tags_ar'            	=> 'required',
+  				'tags_en'            	=> 'required',
+  				'phone'            	=> 'required',
+  				'mobile'            	=> 'required',
+  				'fax'            	=> 'required',
+  				'email'            	=> 'required',
+  				'address_ar'            	=> 'required',
+  				'address_en'            	=> 'required',
+
+			],Settings::$rules);
+		if($validator->fails()){
+			return redirect()->back()->withErrors($validator)->withInput();
+		}else{
+
+			$settings= Settings::findOrFail($id);
+			$message = ['url'=>'يجب ان يبدأ :attribute بــ http:// or https://'];
+			$validator =  Validator::make($request->all(), [
+				'facebook_group' =>'url',
+				'facebook_page' =>'url',
+			],$message);
+			if ($validator->fails()) {
+	            return redirect()->back()->withErrors($validator)->withInput();
+	        }else{ 
+
+	        	if($request->hasFile('logo')){
+
+	                $ext = $request->file('logo')->getClientOriginalExtension();
+	                $dest = 'uploads/';
+	                $request->file('logo')->move($dest, 'logo.png');
+	                $request->merge(['img'=>'logo.png']);
+					$settings->update($request->all());
+					return redirect()->back()->with('message','Success');;
+	        	}else{
+	            	return redirect()->back()->withErrors($validator)->withInput();
+	        	}
+			}
 		}
 	}
 

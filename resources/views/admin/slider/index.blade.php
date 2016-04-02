@@ -1,7 +1,7 @@
  @extends('admin.layout')
 
 	@section('title')
-	Slides
+	الإسلايدر
 	@endsection
 
 	@section('content')

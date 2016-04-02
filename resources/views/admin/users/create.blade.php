@@ -1,4 +1,7 @@
 @extends('admin.layout')
+@section('title')
+	اضافة عضو
+	@endsection
 @section('content')
 
 		<!-- BEGIN FORM-->

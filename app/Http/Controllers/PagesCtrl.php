@@ -8,7 +8,7 @@ use App\Http\Requests\PagesRequest;
 use App\Pages;
 use Redirect;
 use App\ads;
-
+use Validator;
 class PagesCtrl extends Controller {
 
 	public function index()
@@ -26,8 +26,18 @@ class PagesCtrl extends Controller {
 	public function store(Request $request)
 	{
 		//dd($request->add());
-		Pages::create($request->add());
-		return redirect()->to(Url('/').'/admin/pages/');;
+		$validator = Validator::make($request->all(),[
+  				'title_ar'            	=> 'required',
+  				'title_en'            	=> 'required',
+			    'content_ar'       	=> 'required',
+			    'content_en'       	=> 'required',
+			],Pages::$rules);
+		if($validator->fails()){
+			return redirect()->back()->withErrors($validator)->withInput();
+		}else{
+			Pages::create($request->all());
+			return redirect()->to(Url('/').'/admin/pages/');
+		}	
 	}
 
 	public function show($id)
@@ -46,9 +56,19 @@ class PagesCtrl extends Controller {
 
 	public function update($id,Request $request)
 	{
-		$securities = Pages::findorfail($id);
-		$securities->update($request->add());
-		return redirect()->to(Url('/').'/admin/pages/');;
+		$validator = Validator::make($request->all(),[
+  				'title_ar'            	=> 'required',
+  				'title_en'            	=> 'required',
+			    'content_ar'       	=> 'required',
+			    'content_en'       	=> 'required',
+			],Pages::$rules);
+		if($validator->fails()){
+			return redirect()->back()->withErrors($validator)->withInput();
+		}else{
+			$securities = Pages::findorfail($id);
+			$securities->update($request->all());
+			return redirect()->to(Url('/').'/admin/pages/');
+		}	
 	}
 
 	public function sort() {

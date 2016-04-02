@@ -1,6 +1,6 @@
 @extends('admin.layout')
 	@section('title')
-	Add Images
+	اضافة صورة
 	@endsection
 	@if(Session::has('msg'))
 		<div class="alert alert-success">
