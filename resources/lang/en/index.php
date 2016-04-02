@@ -11,4 +11,5 @@ return [
 	"reserv"		=>	"Reservation",
 	"latest"		=>	"Latest News",
 	"comments"		=>	"Comments",
+	"success"		=>	"Your Message Has been sent successfuly",
 ];

@@ -2,11 +2,17 @@
     @section('content')
 	<section class="project">
         <div class="container">
-            <h3><img src="{!!Url('front/')!!}/img/gallery.png">{!!Lang::get('menu.images_gallery')!!}</h3> 
+            <h3><img src="{!!Url('front/')!!}/img/gallery.png">{!!Lang::get('menu.contact')!!}</h3> 
             <br>
 
         	<div class="gallery-cursual">
                 <div class="col-md-12">
+                    <br>
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">
+                           {{ Session::get('success')}} 
+                        </div>
+                    @endif
                     {!! Form:: open(array('action' => 'ContactCtrl@getContactUsForm')) !!} 
                     <ul class="errors">
                     @foreach($errors->all('<li>:message</li>') as $message)

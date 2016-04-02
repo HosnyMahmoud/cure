@@ -2,7 +2,7 @@
     @section('content')
 	<section class="project">
         <div class="container">
-            <h3><img src="{!!Url('front/')!!}/img/gallery.png">{!!Lang::get('menu.images_gallery')!!}</h3> 
+            <h3><img src="{!!Url('front/')!!}/img/gallery.png">{!!Lang::get('menu.about')!!}</h3> 
             <br>
         	<div class="gallery-cursual">
                 @foreach($abouts as $about)
