@@ -117,7 +117,7 @@ $settings = Settings::first();
                         </li> -->
                         <!-- <li><a href="#"> OUR Physicians </a></li> -->
                         @if($about>0)
-                        <li><a href="#">{!!Lang::get('menu.about')!!}</a></li>
+                        <li><a href="{{ Url('/about')}}">{!!Lang::get('menu.about')!!}</a></li>
                         @endif
                         @if($images>0)
                         <li><a href="{{Url('/images')}}">{!!Lang::get('menu.images_gallery')!!}</a></li>
@@ -125,7 +125,7 @@ $settings = Settings::first();
                         @if($videos>0)
                         <li><a href="{{Url('/videos')}}">{!!Lang::get('menu.videos_gallery')!!}</a></li>
                         @endif
-                        <li><a href="#">{!!Lang::get('menu.contact')!!}</a></li>
+                        <li><a href="{{ Url('/contact')}}">{!!Lang::get('menu.contact')!!}</a></li>
                         @if(Session::get('local') == 'ar')
                         <li><a href="{!!Url('lang/en')!!}">{!!Lang::get('menu.lang')!!}</a></li>
                         @else
