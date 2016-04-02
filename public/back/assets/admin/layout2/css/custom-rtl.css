@@ -1,0 +1,5 @@
+@import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
+
+body,.form-title{
+  font-family: 'Droid Arabic Kufi', sans-serif !important;
+}
