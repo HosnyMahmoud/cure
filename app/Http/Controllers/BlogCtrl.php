@@ -47,7 +47,7 @@ class BlogCtrl extends Controller {
 			'content_ar' =>'required',
 			'tags_ar' =>'required',
 			'tags_en' =>'required',
-		]);
+		],Blog::$rules);
 		if($validator->fails()){
 			return redirect()->back()->withErrors($validator)->withInput();
 		}else{
@@ -108,10 +108,10 @@ class BlogCtrl extends Controller {
 			'title_en' => 'required|min:5',
 			'image' =>'image',
 			'content_ar' =>'required',
-			'content_ar' =>'required',
+			'content_en' =>'required',
 			'tags_ar' =>'required',
 			'tags_en' =>'required',
-		]);
+		],Blog::$rules);
 		if($validator->fails()){
 			return redirect()->back()->withErrors($validator)->withInput();
 		}else{

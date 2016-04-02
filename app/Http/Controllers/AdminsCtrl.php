@@ -25,7 +25,7 @@ class AdminsCtrl extends Controller {
 			    'email'            		=> 'required|email|unique:admins',
 				'password'        		=> 'required|min:6|',
 			    'full_name'            	=> 'required',
-			]);
+			],Admin::$rules);
 		if($validator->fails()){
 			return redirect()->back()->withErrors($validator);
 		}else{
@@ -53,7 +53,7 @@ class AdminsCtrl extends Controller {
 		    'email'            		=> 'required|email|',
 			'password'        		=> 'min:6',
 		    'full_name'            	=> 'required',
-			]);
+			],Admin::$rules);
 		if($validator->fails()){
 			return redirect()->back()->withErrors($validator)->withInput();
 		}else{

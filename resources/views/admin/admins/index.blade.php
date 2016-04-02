@@ -5,9 +5,9 @@
 		<table class="table table-responsive table-striped">
 			<thead>
 				<th>#</th>
-				<th>name</th>
-				<th>email</th>
-				<th colspan="2">options</th>
+				<th>الاسم</th>
+				<th>البريد الالكترونى</th>
+				<th colspan="2">خيارات</th>
 			</thead>
 			<tbody>
 				@foreach($admins as $admin)
@@ -15,8 +15,8 @@
 					<td>{!! $admin->id !!}</td>
 					<td>{!! $admin->full_name !!}</td>
 					<td>{!! $admin->email !!}</td>
-					<td><a href="{!!Url('/')!!}/admin/admins/{!! $admin->id !!}/edit" class="btn btn-warning">Edit</a></td>
-					<td><a href="{!!Url('/')!!}/admin/admins/{!! $admin->id !!}/delete" class="btn btn-danger @if($admin->id == Auth::admin()->get()->id)disabled @endif">Delete</a></td>
+					<td><a href="{!!Url('/')!!}/admin/admins/{!! $admin->id !!}/edit" class="btn btn-warning">تعديل</a></td>
+					<td><a href="{!!Url('/')!!}/admin/admins/{!! $admin->id !!}/delete" class="btn btn-danger @if($admin->id == Auth::admin()->get()->id)disabled @endif">حذف</a></td>
 				</tr>
 				@endforeach
 			</tbody>

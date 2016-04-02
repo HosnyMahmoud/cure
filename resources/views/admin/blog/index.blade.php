@@ -1,7 +1,7 @@
  @extends('admin.layout')
 
 	@section('title')
-	Blog
+	الاخبار
 	@endsection
 
 	@section('content')
@@ -34,10 +34,10 @@
 						 #
 					</th>
 					<th>
-						 Title
+						 العنوان
 					</th>
 					<th>
-						 Options
+						 خيارات
 					</th>
 				</tr>
 				</thead>

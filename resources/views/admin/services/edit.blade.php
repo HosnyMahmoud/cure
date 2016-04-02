@@ -1,6 +1,6 @@
 @extends('admin.layout')
 	@section('title')
-		edit New Slide
+		تعديل الخدمات
 	@endsection
 
 	@section('content')

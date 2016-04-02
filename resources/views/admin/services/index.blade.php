@@ -1,7 +1,7 @@
  @extends('admin.layout')
 
 	@section('title')
-	services
+	الخدمات
 	@endsection
 
 	@section('content')

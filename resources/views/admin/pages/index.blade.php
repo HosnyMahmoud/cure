@@ -1,7 +1,7 @@
 <?php use App\Pages; ?>
 @extends('admin.layout')
 	@section('title')
-	Pages
+	الصفخات
 	@endsection
 
 	@section('content')

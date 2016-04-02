@@ -40,22 +40,34 @@ class ServicesCtrl extends Controller {
 	public function store(Request $request)
 	{
 
-		$rules = array('image' => 'image');
-    	$input = ['image'=>$request->file('image')];
-    	$validator = Validator::make($input, $rules);
-    	if ($validator->fails())
-	    {
-	        return Redirect::back()->withErrors($validator);
-	    }else{
-	    	$ext = $request->file('image')->getClientOriginalExtension();
-	    	$request->file('image')->move('uploads/services',time().'.'.$ext);
-	    	$service = Services::create(['image'=>time().'.'.$ext,
-							    		'name_ar'=>$request->name_ar,
-							    		'name_en'=>$request->name_en,
-							    		'desc_ar'=>$request->desc_ar,
-							    		'desc_en'=>$request->desc_en,
-	    		]);
-    		return Redirect::to(Url('/').'/admin/services');
+		$validator = Validator::make($request->all(),[
+  				'name_ar'            	=> 'required',
+  				'name_en'            	=> 'required',
+			    'desc_ar'       	=> 'required',
+			    'desc_en'       	=> 'required',
+			    'image'       	=> 'required',
+			],Services::$rules);
+		if($validator->fails()){
+			return redirect()->back()->withErrors($validator)->withInput();
+		}else{
+			
+			$rules = array('image' => 'image');
+	    	$input = ['image'=>$request->file('image')];
+	    	$validator = Validator::make($input, $rules);
+	    	if ($validator->fails())
+		    {
+		        return Redirect::back()->withErrors($validator);
+		    }else{
+		    	$ext = $request->file('image')->getClientOriginalExtension();
+		    	$request->file('image')->move('uploads/services',time().'.'.$ext);
+		    	$service = Services::create(['image'=>time().'.'.$ext,
+								    		'name_ar'=>$request->name_ar,
+								    		'name_en'=>$request->name_en,
+								    		'desc_ar'=>$request->desc_ar,
+								    		'desc_en'=>$request->desc_en,
+		    		]);
+	    		return Redirect::to(Url('/').'/admin/services');
+		    }
 	    }
 	}
 
@@ -79,30 +91,40 @@ class ServicesCtrl extends Controller {
 	 */
 	public function update($id,Request $request)
 	{
-		$services = Services::findOrFail($id);
-		if($request->hasfile('image')){
-			$rules = array(
-        	'image' => 'image',
-	    	);
-	    	$input = ['image'=>$request->file('image')];
-	    	$validator = Validator::make($input, $rules);
-	    	if ($validator->fails())
-		    {
-		        return Redirect::back()->withErrors($validator);
-		    }else{
-		    	$ext = $request->file('image')->getClientOriginalExtension();
-		    	$request->file('image')->move('uploads/services',time().'.'.$ext);
-		    	$services->update(['image'=>time().'.'.$ext,
-					    		 'name_ar'=>$request->name_ar,
-							     'name_en'=>$request->name_en,
-							     'desc_ar'=>$request->desc_ar,
-							     'desc_en'=>$request->desc_en,
-    					]);
-	    		return Redirect::to(Url('/').'/admin/services');
-		    }
-		}
-		$services->update($request->all());
-	    return Redirect::to(Url('/').'/admin/services');
+		$validator = Validator::make($request->all(),[
+  				'name_ar'            	=> 'required',
+  				'name_en'            	=> 'required',
+			    'desc_ar'       	=> 'required',
+			    'desc_en'       	=> 'required',
+			],Services::$rules);
+		if($validator->fails()){
+			return redirect()->back()->withErrors($validator)->withInput();
+		}else{
+			$services = Services::findOrFail($id);
+			if($request->hasfile('image')){
+				$rules = array(
+	        	'image' => 'image',
+		    	);
+		    	$input = ['image'=>$request->file('image')];
+		    	$validator = Validator::make($input, $rules);
+		    	if ($validator->fails())
+			    {
+			        return Redirect::back()->withErrors($validator);
+			    }else{
+			    	$ext = $request->file('image')->getClientOriginalExtension();
+			    	$request->file('image')->move('uploads/services',time().'.'.$ext);
+			    	$services->update(['image'=>time().'.'.$ext,
+						    		 'name_ar'=>$request->name_ar,
+								     'name_en'=>$request->name_en,
+								     'desc_ar'=>$request->desc_ar,
+								     'desc_en'=>$request->desc_en,
+	    					]);
+		    		return Redirect::to(Url('/').'/admin/services');
+			    }
+			}
+			$services->update($request->all());
+		    return Redirect::to(Url('/').'/admin/services');
+		}    
 	}
 
 	/**

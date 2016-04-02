@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\About;
+use Validator;
 class AboutCtrl extends Controller {
 
 	/**
@@ -35,8 +36,20 @@ class AboutCtrl extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$about = About::create($request->all());
-		return redirect('admin/about');
+		$validator = Validator::make($request->all(),[
+  				'name_ar'            	=> 'required',
+  				'name_en'            	=> 'required',
+			    'content_ar'       	=> 'required',
+			    'content_en'       	=> 'required',
+			],About::$rules);
+		if($validator->fails()){
+			return redirect()->back()->withErrors($validator)->withInput();
+		}else{
+
+			$about = About::create($request->all());
+			return redirect('admin/about');
+
+		}
 	}
 
 	/**
@@ -71,9 +84,19 @@ class AboutCtrl extends Controller {
 	 */
 	public function update(Request $request,$id)
 	{
-		$about = About::findOrFail($id);
-		$about->update($request->all());
-		return redirect('admin/about');
+		$validator = Validator::make($request->all(),[
+  				'name_ar'            	=> 'required',
+  				'name_en'            	=> 'required',
+			    'content_ar'       	=> 'required',
+			    'content_en'       	=> 'required',
+			],About::$rules);
+		if($validator->fails()){
+			return redirect()->back()->withErrors($validator)->withInput();
+		}else{
+			$about = About::findOrFail($id);
+			$about->update($request->all());
+			return redirect('admin/about');
+		}
 	}
 
 	/**

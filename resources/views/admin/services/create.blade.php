@@ -1,6 +1,6 @@
 @extends('admin.layout')
 	@section('title')
-		Create New Slide
+		اضافة خدمات
 	@endsection
 
 	@section('content')

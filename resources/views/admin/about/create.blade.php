@@ -4,11 +4,11 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-default">
-				<div class="panel-heading">Create Section</div>
+				<div class="panel-heading">اضافة معلومات</div>
 				<div class="panel-body">
 					@if(count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
+							<strong>خطأ!</strong> يوجد بعض المشاكل عند الادخال.<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
@@ -18,7 +18,7 @@
 					@endif
 					@if(Session::has('msg'))
 					<div class="alert alert-success">
-						created Successfuly
+						تمت الاضافة بنجاح
 					</div>
 					@endif
 					{!! Form::open(['action'=>'AboutCtrl@store','class'=>'form-horizontal']) !!}
