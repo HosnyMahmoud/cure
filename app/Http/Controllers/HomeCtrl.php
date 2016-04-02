@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Images;
 use App\Videos;
 use App\Services;
+use App\Abouts;
 
 class HomeCtrl extends Controller {
 

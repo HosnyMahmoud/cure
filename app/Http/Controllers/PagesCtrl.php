@@ -23,7 +23,7 @@ class PagesCtrl extends Controller {
 		return View('admin.pages.create',compact('pages'));
 	}
 
-	public function store(PagesRequest $request)
+	public function store(Request $request)
 	{
 		//dd($request->add());
 		Pages::create($request->add());
@@ -44,7 +44,7 @@ class PagesCtrl extends Controller {
 		return View('admin.pages.edit',compact('securities','pages'));
 	}
 
-	public function update($id,PagesRequest $request)
+	public function update($id,Request $request)
 	{
 		$securities = Pages::findorfail($id);
 		$securities->update($request->add());
