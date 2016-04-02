@@ -9,6 +9,6 @@ return [
 	"patient_email"	=>	"Patient Email",
 	"patient_date"	=>	"Date",
 	"reserv"		=>	"Reservation",
-	"latest"		=>	"Latest",
+	"latest"		=>	"Latest News",
 	"comments"		=>	"Comments",
 ];

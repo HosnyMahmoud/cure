@@ -1,3 +1,20 @@
+<?php 
+use App\Images;
+use App\Videos;
+use App\Services;
+use App\About;
+use App\Blog;
+use App\Settings;
+$about = About::count();
+$images = Images::count();
+$videos = Videos::count();
+$services = Services::count();
+$blog = Blog::count();
+$settings = Settings::first();
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -5,7 +22,7 @@
     <meta charset='UTF-8' />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{!! Lang::get('index.title') !!}</title>
+    <title>{!!$settings['siteName_'.Session::get('local')]!!}</title>
     {!!Html::style('front/css/bootstrap.css')!!}
     @if(Session::get('local') == 'ar')
         {!!Html::style('front/css/bootstrap-ar.css')!!}
@@ -45,11 +62,11 @@
                     <div class="col-md-6">
                         <div class="right-navs">
                             <ul class="list-unstyled">
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i> </a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="{!!$settings->google_plus!!}"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="{!!$settings->youtube!!}"><i class="fa fa-youtube"></i></a></li>
+                                <li><a href="{!!$settings->linkedin!!}"><i class="fa fa-linkedin"></i> </a></li>
+                                <li><a href="{!!$settings->twitter!!}"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="{!!$settings->facebook!!}"><i class="fa fa-facebook"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -67,12 +84,12 @@
                 <div class="col-md-3 col-md-12 col-md-offset-3">
                     <div class="location">
                         <p>{!! Html::image('front/images/location.png') !!} {!!Lang::get('index.our_location')!!}</p>
-                        <p>25 st,hamoda mahmoud-n-city</p>
+                        <p>{!!$settings['address_'.Session::get('local')]!!}</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-md-12 ">
                     <div class="location">
-                        <p>{!!Html::image('front/images/call-us.png')!!}(+1)800 433 633 </p>
+                        <p>{!!Html::image('front/images/call-us.png')!!}{!!$settings->phone!!}</p>
                         <p>{!!Lang::get('index.call_us')!!}</p>
                     </div>
                 </div>
@@ -86,7 +103,9 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li><a href="{{Url('')}}">{!!Lang::get('menu.home')!!}</a></li>
+                        @if($services>0)
                         <li><a href="{{Url('/services')}}">{!!Lang::get('menu.service')!!}</a></li>
+                        @endif
                         <!-- <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Your Visit <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">About Us</a></li>
@@ -97,9 +116,15 @@
                             </ul>
                         </li> -->
                         <!-- <li><a href="#"> OUR Physicians </a></li> -->
+                        @if($about>0)
                         <li><a href="#">{!!Lang::get('menu.about')!!}</a></li>
+                        @endif
+                        @if($images>0)
                         <li><a href="{{Url('/images')}}">{!!Lang::get('menu.images_gallery')!!}</a></li>
+                        @endif
+                        @if($videos>0)
                         <li><a href="{{Url('/videos')}}">{!!Lang::get('menu.videos_gallery')!!}</a></li>
+                        @endif
                         <li><a href="#">{!!Lang::get('menu.contact')!!}</a></li>
                         @if(Session::get('local') == 'ar')
                         <li><a href="{!!Url('lang/en')!!}">{!!Lang::get('menu.lang')!!}</a></li>

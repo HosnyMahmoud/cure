@@ -4,14 +4,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Images;
-use App\Videos;
-use App\Services;
-use App\About;
-use App\Blog;
-use App\Slider;
 
-class HomeCtrl extends Controller {
+use App\testimonials;
+class TestimonialsCtrl extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -20,14 +15,8 @@ class HomeCtrl extends Controller {
 	 */
 	public function index()
 	{
-		$about = About::first();
-		$images = Images::take(7)->get();
-		$videos = Videos::take(7)->get();
-		$services = Services::take(4)->get();
-		$blog = Blog::latest('created_at')->take(5)->get();
-		$slider = Slider::latest('created_at')->get();
-
-		return View('front.index',compact('images','videos','services','about','blog','slider'));
+		$testimonials = testimonials::paginate(10);
+		return View('admin.testimonials.index',compact('testimonials'));
 	}
 
 	/**
@@ -37,7 +26,7 @@ class HomeCtrl extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return View('admin.testimonials.create');
 	}
 
 	/**
