@@ -77,7 +77,7 @@
 
 				{!! $testimonials->render() !!}
 				@else
-				<h1 class="text-center" style="color:silver">لا يوجد سلايدات بعد !</h1>
+				<h1 class="text-center" style="color:silver">لا يوجد أراء بعد !</h1>
 				@endif
 			</div>
 		</div>

@@ -11,6 +11,7 @@ use App\About;
 use App\Blog;
 use App\Slider;
 use App\Testimonials;
+use App\Clinic;
 
 class HomeCtrl extends Controller {
 
@@ -28,9 +29,10 @@ class HomeCtrl extends Controller {
 		$blog = Blog::latest('created_at')->take(5)->get();
 		$slider = Slider::latest('created_at')->get();
 		$testimonials = Testimonials::latest('created_at')->take(5)->get();
+		$clinic = Clinic::latest('created_at')->take(4)->get();
 
 
-		return View('front.index',compact('images','videos','services','about','blog','slider','testimonials'));
+		return View('front.index',compact('images','videos','services','about','blog','slider','testimonials','clinic'));
 	}
 
 	/**

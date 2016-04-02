@@ -584,6 +584,12 @@ License: You must have a valid license purchased only from themeforest(the above
 						<span class="title">الشركاء</span>
 						</a>
 					</li>
+					<li class="{{Request::is('testimonials/*') ? 'active' : ''}}">
+						<a href="{!!Url('/')!!}/admin/testimonials">
+						<i class="fa fa-users"></i>
+						<span class="title">اراء العملاء</span>
+						</a>
+					</li>
 					
 					<li class="last hidden">
 						<a href="javascript:;">

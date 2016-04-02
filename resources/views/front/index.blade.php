@@ -180,47 +180,24 @@
             </div>
         </div>
     </section>
+    @if(count($clinic)>0)
     <section class="client">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="left-slider">
                         <div id="client" class="owl-carousel">
+                            @foreach($clinic as $client)
                             <div class="item">
-                                <div class="detal"> <img src="{!!Url('front/')!!}/img/logo-cle.png"> </div>
+                                <div class="detal"> <img title="{!!$client['title_'.Session::get('local')]!!}" src="{!!Url('/')!!}/uploads/clinic/{!!$client->img!!}"> </div>
                             </div>
-                            <div class="item">
-                                <div class="detal"> <img src="{!!Url('front/')!!}/img/logo-cle.png"> </div>
-                            </div>
-                            <div class="item">
-                                <div class="detal"> <img src="{!!Url('front/')!!}/img/logo-cle.png"> </div>
-                            </div>
-                            <div class="item">
-                                <div class="detal"> <img src="{!!Url('front/')!!}/img/logo-cle.png"> </div>
-                            </div>
-                            <div class="item">
-                                <div class="detal"> <img src="{!!Url('front/')!!}/img/logo-cle.png"> </div>
-                            </div>
-                            <div class="item">
-                                <div class="detal"> <img src="{!!Url('front/')!!}/img/logo-cle.png"> </div>
-                            </div>
-                            <div class="item">
-                                <div class="detal"> <img src="{!!Url('front/')!!}/img/logo-cle.png"> </div>
-                            </div>
-                            <div class="item">
-                                <div class="detal"> <img src="{!!Url('front/')!!}/img/logo-cle.png"> </div>
-                            </div>
-                            <div class="item">
-                                <div class="detal"> <img src="{!!Url('front/')!!}/img/logo-cle.png"> </div>
-                            </div>
-                            <div class="item">
-                                <div class="detal"> <img src="{!!Url('front/')!!}/img/logo-cle.png"> </div>
-                            </div>
+                           @endforeach
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    @endif
     @endsection
 @stop
