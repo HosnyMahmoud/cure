@@ -15,9 +15,11 @@ Route::get('/','HomeCtrl@index');
 Route::get('/videos','VideosCtrl@front');
 Route::get('/images','ImagesCtrl@front');
 Route::get('/services','ServicesCtrl@front');
+Route::get('/about','AboutCtrl@front');
 
 Route::get('lang/{lang}','LanguageCtrl@chooser');
-
+Route::get('contact','ContactCtrl@index');
+Route::post('contact','ContactCtrl@getContactUsForm');
 
 /*Route::controllers([
 	'auth' => 'Auth\AuthController',
