@@ -1,30 +1,40 @@
 @extends('front.layout')
     @section('content')
-	<section class="project">
-        <div class="container">
-            <h3><img src="{!!Url('front/')!!}/img/gallery.png">{!!Lang::get('menu.videos_gallery')!!}</h3> 
-            <br>
-        	<div class="gallery-cursual">
-                @foreach($videos as $vid)
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-	                <div class="thumbnail">
-	                	@if($vid->type == 0)
-	                	<a class="various fancybox.iframe" href="{!!Url('/')!!}/uploads/videos/{{$vid->videos}}">
-                            <img style="display: block;width: 312px;height: 312px;" src="{!!Url('/')!!}/uploads/videos/img/{{$vid->img}}" />
-                        </a>
-						@else
-						<a class="various fancybox.iframe" href="{{$vid->link}}">
-                            <img style="display: block;width: 312px;height: 312px;" src="{!!Url('/')!!}/uploads/videos/img/{{$vid->img}}" />
-                        </a> 
-						@endif
-
-
-	                </div>
+        <div id="page_videos">
+            <div class="container">
+                <div class="video">
+                    <h3><img src="{!!Url('front/')!!}/img/play-hover.png">Video</h3>
                 </div>
-                @endforeach
-        	</div>
-        </div>      
-        		{!! $videos->render()!!}
-    </section>
+                <div class="row">
+                    @foreach($videos as $vid)
+                        @if($vid->type == 0)
+                            <div class="col-md-3">
+                                <div class="item">
+                                    <img class="img-responsive" src="{!!Url('/')!!}/uploads/videos/img/{{$vid->img}}" alt="name">
+                                    <div class="overall">
+
+                                        <a href="{!!Url('/')!!}/uploads/videos/{{$vid->videos}}" data-lightbox-gallery="roadtrip">
+                                            <img class="img-responsive" src="{!!Url('front/')!!}/img/search-after.png">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="col-md-3">
+                                <div class="item">
+                                    <img class="img-responsive" src="{!!Url('/')!!}/uploads/videos/img/{{$vid->img}}" alt="name">
+                                    <div class="overall">
+
+                                        <a href="{{$vid->link}}" data-lightbox-gallery="roadtrip">
+                                            <img class="img-responsive" src="{!!Url('front/')!!}/img/search-after.png">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
     @endsection
 @stop

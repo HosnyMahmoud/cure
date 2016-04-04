@@ -1,18 +1,15 @@
 @extends('front.layout')
     @section('content')
-	<section class="project">
         <div class="container">
-            <h3><img src="{!!Url('front/')!!}/img/gallery.png">{!!Lang::get('menu.about')!!}</h3> 
-            <br>
+            <h3>{!!Lang::get('menu.about')!!}</h3> 
         	<div class="gallery-cursual">
                 @foreach($abouts as $about)
                 <div class="col-md-12">
-                    <h1>{{ $about->name_en}}</h1>
-                    <p>{{ $about->content_en}}</p>
+                    <h1>{{ $about['name_'.Session::get('local')]}}</h1>
+                    <p>{{ $about['content_'.Session::get('local')]}}</p>
                 </div>
                 @endforeach
         	</div>
         </div>      
-    </section>
     @endsection
 @stop

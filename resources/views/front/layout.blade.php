@@ -187,11 +187,11 @@ $settings = Settings::first();
     <script>
         $(document).ready(function() {
             $(".various").fancybox({
-                fitToView   : true,
+/*                fitToView   : true,
                 autoSize    : true,
                 closeClick  : false,
                 openEffect  : 'none',
-                closeEffect : 'none'
+                closeEffect : 'none'*/
             });
         });
         new WOW().init();

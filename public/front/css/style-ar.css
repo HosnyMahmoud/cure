@@ -25,8 +25,8 @@
        url(../fonts/DinNext-Medoum.woff) format('woff'),
        url(../fonts/DinNext-Medoum.ttf) format('truetype');
 }
-body{font-family:'Din-Next' !important;
-height: 3500px;}
+body{font-family:'Din-Next' !important;}
+
 
 a,.btn,p,h1,h2,h3,h4,h5,h6,span,label,.item{
     font-family: 'Din-Next' !important;
@@ -377,10 +377,9 @@ section.main-slider .non-after a::after{
     font-style: normal;
     font-weight: normal;
     line-height: 1;
-    right: 90%;
+    right: 301px;
     font-size: 22px;
     color: #0c6cb5;
-    z-index: 9;
 }
 
 
@@ -872,18 +871,4 @@ section.client {
 }
 .copyright p span a:hover{
     color: #fff;
-}
-.right-slider .owl-buttons{
-    right: -86%;
-    top: -120px;
-    position: relative;
-}
-#dummy {
-    display: none;
-}
-
-.fancybox-inner iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
 }
