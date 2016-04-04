@@ -24,8 +24,7 @@
        url(../fonts/OpenSans-Bold-webfont.woff) format('woff2'),
        url(../fonts/OpenSans-Bold-webfont.ttf) format('truetype');
 }
-body{font-family:'OpenSans-Bold';
-height: 3500px;}
+body{font-family:'OpenSans-Bold';}
 ::selection {color:#fff ;background:#0c6cb5;}
 ::-moz-selection {color:#fff;background:#0c6cb5;}
 /****************************************end insert font****************************************/
@@ -368,10 +367,9 @@ section.main-slider .non-after a::after{
     font-style: normal;
     font-weight: normal;
     line-height: 1;
-    left: 320px;
+    left: 301px;
     font-size: 22px;
     color: #0c6cb5;
-    z-index: 9;
 }
 
 
@@ -579,16 +577,19 @@ section.main-slider .non-after a::after{
 
 /* ================================= vido ========================================= */
 .video{
-     padding: 3em 0;   
+   
     text-align: center;
     padding: 4em 0;
 	background: #fff; 
     position: relative;
+
 }
+
 .video h3 {
     font-size: 39px;
     color: #0c6cb6;
-    margin-bottom: 43px;
+    margin-bottom: 77px;
+    
 }
 .video h3::after{
     position: absolute;
@@ -857,3 +858,71 @@ section.client {
 .copyright p span a:hover{
     color: #fff;
 }
+
+
+
+/* ================================= videos-page  =================================== */
+
+.nivo-lightbox-content iframe{
+    width: 100% !important;
+}
+.nivo-lightbox-theme-default .nivo-lightbox-close{
+    background-position:  1px 0px;
+    width: 31px;
+    height: 30px;
+}
+#page_videos{
+        padding: 50px 20px 20px 20px;
+    background:#A7C8E4;
+    margin-top: -10px;
+    position: relative;
+}
+
+#page_videos .item{
+    margin-bottom: 32px;
+}
+div#page_videos::after {
+    width: 0px;
+    left: -1px;
+    height: 1px;
+    background: transparent;
+    border-right: 25px solid transparent;
+    position: absolute;
+    border-left: 25px solid transparent;
+    border-bottom: 25px solid #0c6cb6;
+    content: ' ';
+    transform: rotate(135deg);
+    top: 14px;
+}
+
+    #page_videos::before {
+    width: 0px;
+    left: -15px;
+    height: 1px;
+    background: transparent;
+    border-right: 25px solid transparent;
+    position: absolute;
+    border-left: 22px solid transparent;
+    border-bottom: 25px solid #fff;
+    content: ' ';
+    transform: rotate(-46deg);
+    top: -5px;
+}
+    
+#page_videos .video h3{font-size: 39px; color: #fff;}
+#page_videos .video{
+    background: none;
+    color: #fff;
+    margin-bottom: 24px;
+}
+#page_videos .video h3::after{
+      background: url(../img/heart-chart-wh.png) no-repeat transparent 50% 2%;
+    background-size: 178px;
+}
+#page_videos .video img{
+    display: inline-block;
+    width: 48px;
+    position: relative;
+    top: -4px;
+    }
+  

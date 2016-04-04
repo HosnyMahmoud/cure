@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <div class="form-group">
-                            <span style='font-size: 20px;color: #fff;'>{!!Lang::get('index.patient_date')!!}</span>
+                            <span style='font-size: 20px;color: #fff;margin-left: 25px;position: relative;'>{!!Lang::get('index.patient_date')!!}</span>
                                 <input type="text" class="customs form-control" id="datepicker" name="date" size="40"> <i class="glyphicon glyphicon-calendar"></i> 
                         </div>
                     </div>
