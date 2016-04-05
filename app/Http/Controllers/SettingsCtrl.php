@@ -52,9 +52,12 @@ class SettingsCtrl extends Controller {
 
 	        	// if($request->hasFile('logo')){
 
-	                //$ext = $request->file('logo')->getClientOriginalExtension();
-	               // $dest = 'uploads/';
-	               // $request->file('logo')->move($dest, 'logo.png');
+	               $ext = $request->file('logo')->getClientOriginalExtension();
+	               $dest = 'uploads/';
+	               $request->file('logo')->move($dest, 'logo.png');
+
+	                // dd($request->all());
+					$settings->update($request->all());
 					return redirect()->back()->with('message','Success');;
 	        	// }else{
 	        	// 	return redirect()->back()->withErrors($validator);
