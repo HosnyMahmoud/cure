@@ -47,20 +47,18 @@ class SettingsCtrl extends Controller {
 				'facebook_page' =>'url',
 			],$message);
 			if ($validator->fails()) {
-	            return redirect()->back()->withErrors($validator)->withInput();
+	            return redirect()->back()->withErrors($validator);
 	        }else{ 
 
-	        	if($request->hasFile('logo')){
+	        	// if($request->hasFile('logo')){
 
-	                $ext = $request->file('logo')->getClientOriginalExtension();
-	                $dest = 'uploads/';
-	                $request->file('logo')->move($dest, 'logo.png');
-	                $request->merge(['img'=>'logo.png']);
-					$settings->update($request->all());
+	                //$ext = $request->file('logo')->getClientOriginalExtension();
+	               // $dest = 'uploads/';
+	               // $request->file('logo')->move($dest, 'logo.png');
 					return redirect()->back()->with('message','Success');;
-	        	}else{
-	            	return redirect()->back()->withErrors($validator)->withInput();
-	        	}
+	        	// }else{
+	        	// 	return redirect()->back()->withErrors($validator);
+	        	// }
 			}
 		}
 	}

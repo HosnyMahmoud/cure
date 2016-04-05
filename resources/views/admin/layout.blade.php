@@ -591,13 +591,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<span class="title">اراء العملاء</span>
 						</a>
 					</li>
-					<li class="{{Request::is('polls/*') ? 'active' : ''}}">
-						<a href="{!!Url('/')!!}/admin/polls">
-						<i class="fa fa-users"></i>
-						<span class="title">استطلاع الرأى
-</span>
-						</a>
-					</li>
+
 					<li class="last hidden">
 						<a href="javascript:;">
 						<i class="icon-pointer"></i>
