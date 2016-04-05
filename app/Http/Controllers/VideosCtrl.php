@@ -44,7 +44,7 @@ class VideosCtrl extends Controller {
   				 'name_ar'            	=> 'required',
   				 'name_en'            	=> 'required',
   				 'img'            	=> 'required',
-		]);
+		],Videos::$rules);
 		if($validator->fails()){
 			return redirect()->back()->withErrors($validator)->withInput();
 		}else{
@@ -55,6 +55,22 @@ class VideosCtrl extends Controller {
 	        	$upload = $request->file('videos')->move($dest, time().'.'.$exte);
             	$video->videos = time().'.'.$exte ; 
 			}
+			if($request->type == 0){
+
+				$validator = Validator::make($request->all(),[
+		  				'videos'            	=> 'required',
+				],Videos::$rules);
+				if($validator->fails()){
+					return redirect()->back()->withErrors($validator)->withInput();
+				}
+			}else{
+				$validator = Validator::make($request->all(),[
+		  				'link'            	=> 'required',
+				],Videos::$rules);
+				if($validator->fails()){
+					return redirect()->back()->withErrors($validator)->withInput();
+				}
+			}	
 			if($request->hasFile('img')){
 
                 $ext = $request->file('img')->getClientOriginalExtension();
@@ -112,19 +128,38 @@ class VideosCtrl extends Controller {
 		$validator = Validator::make($request->all(),[
   				'name_ar'            	=> 'required',
   				'name_en'            	=> 'required',
-		]);
+		],Videos::$rules);
 		if($validator->fails()){
 			return redirect()->back()->withErrors($validator);
 		}else{
+			if($video->videos !== ''){
+				$request->merge(['videos'=>$video->videos]);
+			}
+			//dd($request->all());
+			if($request->type == 0){
 
-            if($request->hasFile('videos')){
-                $ext = $request->file('videos')->getClientOriginalExtension();
-                $dest = 'uploads/videos';
-                if( $ext == 'mp4' ){
-                	$request->file('videos')->move($dest, time().'.'.$ext);
-                }
-            	$video->videos  = time().'.'.$ext ; 
-            }
+				$validator = Validator::make($request->all(),[
+		  				'videos'            	=> 'required',
+				],Videos::$rules);
+				if($validator->fails()){
+					return redirect()->back()->withErrors($validator)->withInput();
+				}
+	            if($request->hasFile('videos')){
+	                $ext = $request->file('videos')->getClientOriginalExtension();
+	                $dest = 'uploads/videos';
+	                if( $ext == 'mp4' ){
+	                	$request->file('videos')->move($dest, time().'.'.$ext);
+	                }
+	            	$video->videos  = time().'.'.$ext ; 
+	            }
+			}else{
+				$validator = Validator::make($request->all(),[
+		  				'link'            	=> 'required',
+				],Videos::$rules);
+				if($validator->fails()){
+					return redirect()->back()->withErrors($validator)->withInput();
+				}
+			}
             if($request->hasFile('img')){
                 $exte = $request->file('img')->getClientOriginalExtension();
                 $dest = 'uploads/videos/img';
@@ -134,6 +169,8 @@ class VideosCtrl extends Controller {
             $video->name_ar = $request->name_ar; 
             $video->name_en = $request->name_en; 
             $video->link    = $request->link; 
+            $video->type    = $request->type;
+
         	$video->save();
             return back()->with('msg','تم التعديل بنجاح'); 
    		}

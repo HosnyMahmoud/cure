@@ -45,22 +45,22 @@ class ImagesCtrl extends Controller {
   				 'name_ar'            	=> 'required',
   				 'name_en'            	=> 'required',
 			     'img'                  => 'required',
-		]);
+		],Images::$rules);
 		if($validator->fails()){
 			return redirect()->back()->withErrors($validator)->withInput();
 		}else{
 
+        	$images =  new Images();
 			if($request->hasFile('img')){
                 $ext = $request->file('img')->getClientOriginalExtension();
                 $dest = 'uploads/images';
                 $request->file('img')->move($dest, time().'.'.$ext);
                 //$request->merge(['img'=>time().'.'.$ext]);
+        		$images->img  = time().'.'.$ext ;
             }
             //dd($request->all());
-        	$images =  new Images();
         	$images->name_ar = $request->name_ar;
         	$images->name_en = $request->name_en;
-        	$images->img  = time().'.'.$ext ;
         	$images->save();
 			//return redirect()->back();
 	   	 	return back()->with('msg','تم الاضافة بنجاح');
@@ -107,8 +107,7 @@ class ImagesCtrl extends Controller {
 		$validator = Validator::make($request->all(),[
   				 'name_ar'            	=> 'required',
   				 'name_en'            	=> 'required',
-			     'img'                  => 'required',
-		]);
+		],Images::$rules);
 		if($validator->fails()){
 			return redirect()->back()->withErrors($validator)->withInput();
 		}else{
@@ -118,12 +117,12 @@ class ImagesCtrl extends Controller {
                 $dest = 'uploads/images';
                 $request->file('img')->move($dest, time().'.'.$ext);
                 $request->merge(['img'=>time().'.'.$ext]);
+        		$images->img  = time().'.'.$ext ;
             }
             //dd($request->all());
         	//$images =  Images::create($request->all());
         	$images->name_ar = $request->name_ar;
         	$images->name_en = $request->name_en;
-        	$images->img  = time().'.'.$ext ;
         	$images->save();
 	   	 	return back()->with('msg','تم الاضافة بنجاح');
 

@@ -9,7 +9,16 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">إضافه فيديو</div>
 				<div class="panel-body">
-					
+					@if (count($errors) > 0)
+						<div class="alert alert-danger">
+							<strong>خطأ!</strong> يوجد بعض المشاكل عند الادخال.<br><br>
+							<ul>
+								@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+							</ul>
+						</div>
+					@endif
 					@if(Session::has('msg'))
 					<div class="alert alert-success">
 						تمت الإضافه بنجاح
