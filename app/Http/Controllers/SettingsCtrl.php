@@ -56,7 +56,7 @@ class SettingsCtrl extends Controller {
 	               $dest = 'uploads/';
 	               $request->file('logo')->move($dest, 'logo.png');
 
-	                //dd($request->all());
+	                // dd($request->all());
 					$settings->update($request->all());
 					return redirect()->back()->with('message','Success');;
 	        	}else{
