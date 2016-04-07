@@ -50,6 +50,35 @@ class LoginCtrl extends Controller {
         }
 	}
 
+	public function showClientReg()
+	{	
+		if(Auth::client()->check() == false)
+		{
+			return View('auth.register');
+		}else{
+			return redirect()->intended('/');
+		}
+	
+	}
+	public function postClientReg(Request $request)
+	{
+		$message = ['required'=>'الحقل :attribute مطلوب','min'=>'الحقل :attribute يجب الا يقل عن :min','unique'=>'البريد الإلكترونى مستخدم من قبل'];
+
+		$validator =  Validator::make($request->all(), [
+			'email' => 'unique:users',
+			'password' => 'required|min:5',
+		],$message);
+		if ($validator->fails()) {
+            return redirect()
+            			->back()
+                        ->withInput()
+                        ->withErrors($validator);
+        }else{    
+			$request->merge(['password'=>bcrypt($request->password)]);
+			User::create($request->all());
+			return redirect()->back()->with('success','done');
+		}
+	}
 	public function ClientLogout()
 	{	
 		if(Auth::client()->check() == false)

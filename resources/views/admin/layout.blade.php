@@ -541,6 +541,12 @@ License: You must have a valid license purchased only from themeforest(the above
 						<span class="title">الإسلايدر</span>
 						</a>
 					</li>
+					<li class="{{Request::is('admin/departments*') ? 'active' : ''}}">
+						<a href="{!!Url('/')!!}/admin/departments">
+						<i class="icon-list"></i>
+						<span class="title">أقسام المستشفى</span>
+						</a>
+					</li>
 					<li class="{{Request::is('admin/services*') ? 'active' : ''}}">
 						<a href="{!!Url('/')!!}/admin/services">
 						<i class="icon-puzzle"></i>

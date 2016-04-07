@@ -8,4 +8,6 @@ return [
 	"images_gallery" 	=> "معرض الصور",
 	"videos_gallery" 	=> "معرض الفيديو",
 	"contact" 			=> "تواصل معنا",
+	"login" 			=> "تسجيل الدخول",
+
 ];

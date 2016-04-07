@@ -1,12 +1,17 @@
 
 @extends('front.layout')
     @section('content')
+    @if(Session::has('success'))
+        <script>
+            alert('{!!Lang::get("assets.success")!!}');
+        </script>
+    @endif
     <div class="clearfix"></div>
     @if(count($slider)>0)
     <section class="main-slider">
         <ul id="main-sliders">
             @foreach($slider as $slide)
-            <li> <a href="#slide1" class="over-bg"> <img src="{!!Url('front/')!!}/images/slider-1.jpg" alt="<div class='caption hidden-xs hidden-sm'> <span class='wow fadeInUp' data-wow-delay='0.6s'>The Best Hospitality IN EGYPT</span> <h3 class='wow bounceInDown' data-wow-delay='0.6s'>CARE FOR YOUR HEALTH </h3> <p class='lead wow bounceInRight' data-wow-delay='0.1s'>Qualified Staff With Expertise in Services We Offer for more Resonable cost with love, Just explore about </p></div><div class='clearfix'></div><div class='non-after'> <a href='#' class='wow bounceInLeft hidden-xs hidden-sm ' data-wow-delay='0.3s'>More</a> </div>"> </a>
+            <li> <a class="over-bg"> <img src="{!!Url('uploads/')!!}/slider/{!!$slide->background!!}" alt="<div class='caption hidden-xs hidden-sm'> <span class='wow fadeInUp' data-wow-delay='0.6s'>{!!$slide['head_'.Session::get('local')]!!}</span> <p class='wow bounceInDown' data-wow-delay='0.6s'>{!!$slide['text_'.Session::get('local')]!!}</p></div><div class='clearfix'></div><div class='non-after'></div>"> </a>
             </li>
             @endforeach
         </ul>
@@ -20,23 +25,28 @@
     <br><br><br><br><br>
     @endif
     <section class="resrvation wow @if(Session::get('local')=='en') slideInLeft @else slideInRight @endif data-wow-delay='0.8s' ">
+    @if(Auth::client()->check() == true)
+        {!!Form::open(['url'=>'reserv'])!!}
+    @else
+        {!!Form::open(['url'=>Url('login'),'method'=>'get'])!!}
+    @endif
         <div class="container">
             <div class="bg-resv">
                 <div class="row" id="result">
                     <div class="col-md-4 col-xs-12">
                         <div class="form-group">
                             <label for="name">{!!Lang::get('index.patient_name')!!}</label>
-                            <input type="text" class="form-control" id="name" placeholder=""> </div>
+                            <input type="text" name="patient_name" class="form-control" id="name" placeholder=""> </div>
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <div class="form-group">
                             <label for="number">{!!Lang::get('index.patient_number')!!}</label>
-                            <input type="text" class="form-control" id="number" placeholder=""> </div>
+                            <input type="text" name="patient_phone" class="form-control" id="number" placeholder=""> </div>
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <div class="form-group">
                             <label for="email">{!!Lang::get('index.patient_email')!!}</label>
-                            <input type="email" class="form-control" id="email" placeholder=""> </div>
+                            <input type="email" name="patient_email" class="form-control" id="email" placeholder=""> </div>
                     </div>
                     <div class="col-md-4 col-xs-12">
                         <div class="form-group">
@@ -45,19 +55,15 @@
                         </div>
                     </div>
                     <div class="col-md-4 col-xs-12">
-                        <select class="form-control" id="depart">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                       {!!Form::select('department_id',$departments,null,['class'=>'form-control','id'=>'depart'])!!}
                     </div>
                     <div class="col-md-4 col-xs-12 sub">
-                        <input class="form-control btn btn-default" type="submit" value="{!!Lang::get('index.reserv')!!}" id="reserv"> </div>
+                        <input class="form-control btn btn-default" type="submit" value="{!!Lang::get('index.reserv')!!}" id="reserv">
+                    </div>
                 </div>
             </div>
         </div>
+        {!!Form::close()!!}
     </section>
     <div class="clearfix"></div>
      @if(count($about) > 0)
@@ -199,5 +205,7 @@
         </div>
     </section>
     @endif
+    <!-- Latest compiled and minified CSS & JS -->
+    
     @endsection
 @stop

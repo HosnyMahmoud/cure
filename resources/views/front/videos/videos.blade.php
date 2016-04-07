@@ -3,7 +3,7 @@
         <div id="page_videos">
             <div class="container">
                 <div class="video">
-                    <h3><img src="{!!Url('front/')!!}/img/play-hover.png">Video</h3>
+                    <h3><img src="{!!Url('front/')!!}/img/play-hover.png">{!!Lang::get('menu.videos_gallery')!!}</h3>
                 </div>
                 <div class="row">
                     @foreach($videos as $vid)

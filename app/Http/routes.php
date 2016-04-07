@@ -10,8 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('/','HomeCtrl@index');
+
 Route::get('/videos','VideosCtrl@front');
 Route::get('/images','ImagesCtrl@front');
 Route::get('/services','ServicesCtrl@front');
@@ -25,14 +25,24 @@ Route::post('contact','ContactCtrl@getContactUsForm');
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+*/
+Route::get('sign_up','LoginCtrl@showClientReg');
+Route::post('sign_up','LoginCtrl@postClientReg');
+
+Route::get('login','LoginCtrl@showClientLogin');
+Route::post('login','LoginCtrl@postClientLogin');
+Route::get('logout','LoginCtrl@ClientLogout');
 Route::group(['middleware' => 'auth'], function()
 {
+	Route::post('reserv','ReservationCtrl@store');
 	
-}*/
+});
 
 Route::get('admin/login','LoginCtrl@showAdminLogin');
 Route::post('admin/login','LoginCtrl@postAdminLogin');
 Route::get('admin/logout','LoginCtrl@AdminLogout');
+
+
 Route::group(['middleware' => 'authAdmin'], function()
 {
 	Route::get('admin',function(){
@@ -50,6 +60,7 @@ Route::group(['middleware' => 'authAdmin'], function()
 	Route::resource('admin/reservations','ReservationCtrl');
 	Route::resource('admin/testimonials','TestimonialsCtrl');
 	Route::resource('admin/clinic','ClinicCtrl');
+	Route::resource('admin/departments','DepartmentsCtrl');
 
 	Route::resource('admin/pages','PagesCtrl');
 	Route::get('admin/pages/{id}/delete','PagesCtrl@destroy');

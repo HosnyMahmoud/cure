@@ -15,7 +15,7 @@ class Authenticate {
 	 */
 	public function __construct()
 	{
-		$this->auth = Auth::admin();
+		$this->auth = Auth::client();
 	}
 	/**
 	 * Handle an incoming request.
@@ -34,7 +34,7 @@ class Authenticate {
 			}
 			else
 			{
-				return redirect()->guest('auth/login');
+				return redirect()->guest('login');
 			}
 		}
 		return $next($request);

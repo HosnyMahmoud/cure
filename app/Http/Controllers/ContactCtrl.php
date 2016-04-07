@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Validator;
 use Mail;
 use Lang;
+use App\Settings;
+
 class ContactCtrl extends Controller {
 
 	/**
@@ -22,17 +24,17 @@ class ContactCtrl extends Controller {
 
 	
 	public function getContactUsForm(Request $request){
-
+		$settings = Settings::first();
         if(Mail::send('emails.feedback',
         array(
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'msg' => $request->get('msg'),
 
-        ), function($message)use($request)
+        ), function($message)use($request,$settings)
 	    {
 	        $message->from($request->get('email'));
-	        $message->to('eng.ahmedmgad@gmail.com', 'Admin')->subject('Contact Details From:'.Url('/'));
+	        $message->to($settings->email, 'Admin')->subject('Contact Details From:'.Url('/'));
 	    })){
         	return redirect()->to('/contact')->with('success',Lang::get('index.success'));
 	    }

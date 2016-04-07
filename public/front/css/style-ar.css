@@ -27,13 +27,12 @@
 }
 body{font-family:'Din-Next' !important;}
 
-
-a,.btn,p,h1,h2,h3,h4,h5,h6,span,label,.item{
-    font-family: 'Din-Next' !important;
-}
 /****************************************end insert font****************************************/
  ::selection {color:#fff ;background:#0c6cb5;}
 ::-moz-selection {color:#fff;background:#0c6cb5;}
+a,.btn,p,h1,h2,h3,h4,h5,h6,span,label,.item{
+    font-family: 'Din-Next' !important;
+}
 .top-navs{
     background: #f0f2f4;  
     position:relative;
@@ -377,9 +376,8 @@ section.main-slider .non-after a::after{
     font-style: normal;
     font-weight: normal;
     line-height: 1;
-    right: 301px;
+    right: 86%;
     font-size: 22px;
-    color: #0c6cb5;
 }
 
 
@@ -871,4 +869,245 @@ section.client {
 }
 .copyright p span a:hover{
     color: #fff;
+}
+
+/* ================================= videos-page  =================================== */
+
+.nivo-lightbox-content iframe{
+    width: 100% !important;
+}
+.nivo-lightbox-theme-default .nivo-lightbox-close{
+    background-position:  1px 0px;
+    width: 31px;
+    height: 30px;
+}
+#page_videos{
+        padding: 50px 20px 20px 20px;
+    background:#A7C8E4;
+    margin-top: -10px;
+    position: relative;
+}
+
+#page_videos .item{
+    margin-bottom: 32px;
+}
+div#page_videos::after {
+    width: 0px;
+    left: -1px;
+    height: 1px;
+    background: transparent;
+    border-right: 25px solid transparent;
+    position: absolute;
+    border-left: 25px solid transparent;
+    border-bottom: 25px solid #0c6cb6;
+    content: ' ';
+    transform: rotate(135deg);
+    top: 14px;
+}
+
+    #page_videos::before {
+    width: 0px;
+    left: -15px;
+    height: 1px;
+    background: transparent;
+    border-right: 25px solid transparent;
+    position: absolute;
+    border-left: 22px solid transparent;
+    border-bottom: 25px solid #fff;
+    content: ' ';
+    transform: rotate(-46deg);
+    top: -5px;
+}
+    
+#page_videos .video h3{font-size: 39px; color: #fff;}
+#page_videos .video{
+    background: none;
+    color: #fff;
+    margin-bottom: 24px;
+}
+#page_videos .video h3::after{
+      background: url(../img/heart-chart-wh.png) no-repeat transparent 50% 2%;
+    background-size: 178px;
+}
+#page_videos .video img{
+    display: inline-block;
+    width: 48px;
+    position: relative;
+    top: -4px;
+    }
+  
+/*================================================ About-Us =====================================*/
+
+.about-page h3{
+    text-align: center;
+    color: #999;
+        font-size: 18px;
+}
+.about-page p {
+    font-size: 17px;
+    text-align: center;
+    margin-bottom: 48px;
+    line-height: 28px;
+    margin-top: 23px;
+    color: #fff;
+}
+.about-page .panel-default > .panel-heading{
+    padding: 14px;
+}
+.about-page .panel{
+    padding: 23px;
+    border-radius: 0px;
+}
+.about-page .panel-default > .panel-heading{
+    color: #999;
+    
+}
+.about-page .panel-default > .panel-heading a{
+    text-decoration: none;
+        -webkit-transition:  background-size linear 0.3s;
+    -moz-transition:  background-size .5s, linear 0.3s;
+    -ms-transition:  background-size .5s, linear 0.3s;
+    -o-transition:  background-size .5s, linear 0.3s;
+    transition:  background-size .5s, linear 0.3s; 
+}
+.about-page .panel-default > .panel-heading a:hover{
+    color: #0c6cb6;
+}
+.about-page .panel-default > .panel-heading + .panel-collapse > .panel-body{
+    color: #999;
+        line-height: 20px;
+}
+/* =================================== login-page =================================== */
+
+.login_page {
+    background: #f1f2f4;
+    padding: 20px;
+    margin-bottom: 27px;
+
+}
+
+.login_page img {
+    margin: auto;
+    position: relative;
+    top: 18px;
+}
+
+.login_page .img-div {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    padding: 10px;
+    display: block;
+    overflow: hidden;
+    margin: auto;
+    border: 5px solid #eee;
+        -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    
+}
+.login_page:hover .img-div{
+    -webkit-transform: rotate(360deg) scale(1.1); /* Chrome 4+, Op 15+, Saf 3.1, iOS Saf 3.2+ */
+       -moz-transform: rotate(360deg) scale(1.1); /* Fx 3.5-15 */
+        -ms-transform: rotate(360deg) scale(1.1); /* IE 9 */
+         -o-transform: rotate(360deg) scale(1.1); /* Op 10.5-12 */
+            transform: rotate(360deg) scale(1.1); /* Fx 16+, IE 10+ */
+}
+
+
+.login_page .form-control {
+    height: 51px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 0px;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+.checkbox label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    font-size: 11px;
+}
+
+.checkbox label:before {
+    content: "";
+    display: inline-block;
+    width: 23px;
+    height: 20px;
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: #0c6cb6;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+}
+
+.checkbox label {
+    min-height: 20px;
+    padding-left: 31px;
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
+    color: #0c6cb6;
+}
+
+input[type=checkbox]:checked + label:before {
+    content: "\2713";
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    font-size: 20px;
+    color: #f3f3f3;
+    text-align: center;
+    line-height: 20px;
+}
+
+.checkbox span {
+    padding-left: 57px;
+    font-size: 11px;
+}
+
+.login-details .form-group {
+    margin-bottom: 15px;
+    height: 40px;
+}
+
+.checkbox {
+    margin-top: 29px;
+}
+
+.login-details .btn-default {
+    color: #fff;
+    background-color: #0c6cb6;
+    border-color:0px;
+    padding: 10px 50px;
+    border-radius:2px; 
+    margin: auto;
+    display: block;
+        margin-top: 12px;
+}
+.login-details .btn-default:hover{
+    color: #0c6cb6;
+
+}
+.login-details .hvr-bounce-to-bottom:before{
+        border-radius: 2px;
+        border: 0px;
+}
+.login-details .button-bottom{
+    display: block;
+    text-align: center;
+    
+}
+.login-details .button-bottom span a{
+    color: #0c6cb6;
+    padding-bottom: 10px;
 }

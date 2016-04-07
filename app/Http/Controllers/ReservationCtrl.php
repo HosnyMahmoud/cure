@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Reservations;
 use Carbon\Carbon;
+use App\Settings;
+use Auth;
+use Mail;
 class ReservationCtrl extends Controller {
 
 	/**
@@ -15,7 +18,7 @@ class ReservationCtrl extends Controller {
 	 */
 	public function index()
 	{
-		$reservations = Reservations::paginate(10);
+		$reservations = Reservations::latest('reservation_date')->paginate(20);
 		return view('admin.reservations.index',compact('reservations'));
 	}
 
@@ -26,7 +29,7 @@ class ReservationCtrl extends Controller {
 	 */
 	public function create()
 	{
-		//
+		
 	}
 
 	/**
@@ -34,9 +37,26 @@ class ReservationCtrl extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$settings = Settings::first();
+		$request->merge(['reservation_date'=>Carbon::parse($request->date)]);
+		$request->merge(['user_id'=>Auth::client()->get()->id]);
+		$reserv = Reservations::create($request->all());
+		Mail::send('emails.reservation',
+        array(
+            'name' => $request->patient_name,
+            'email' => $request->patient_email,
+            'number' => $request->patient_phone,
+            'date' => $request->date,
+            'url' => Url('/').'/admin/reservations',
+
+        ), function($message)use($request,$settings)
+	    {
+	        $message->from($settings->email);
+	        $message->to($settings->email, 'Admin')->subject('New reservation From:'.Url('/'));
+	    });
+		return redirect()->back()->with('success','done');	
 	}
 
 	/**

@@ -4,17 +4,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use App\Images;
-use App\Videos;
-use App\Services;
-use App\About;
-use App\Blog;
-use App\Slider;
-use App\Testimonials;
 use App\Departments;
-use App\Clinic;
-use Session;
-class HomeCtrl extends Controller {
+class DepartmentsCtrl extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -23,17 +14,8 @@ class HomeCtrl extends Controller {
 	 */
 	public function index()
 	{
-		$about = About::first();
-		$images = Images::take(7)->get();
-		$videos = Videos::take(7)->get();
-		$services = Services::take(4)->get();
-		$blog = Blog::latest('created_at')->take(5)->get();
-		$slider = Slider::latest('created_at')->get();
-		$testimonials = Testimonials::latest('created_at')->take(5)->get();
-		$clinic = Clinic::latest('created_at')->take(4)->get();
-		$departments = Departments::latest('created_at')->lists('name_'.Session::get('local'),'id');
-
-		return View('front.index',compact('images','videos','services','about','blog','slider','testimonials','clinic','departments'));
+		$departments =  Departments::paginate(10);
+		return View('admin.departments.index',compact('departments'));
 	}
 
 	/**
@@ -43,7 +25,8 @@ class HomeCtrl extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return View('admin.departments.create');
+		
 	}
 
 	/**
@@ -51,9 +34,10 @@ class HomeCtrl extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		Departments::create($request->all());
+		return redirect()->to(Url('admin/departments'));
 	}
 
 	/**
@@ -64,7 +48,8 @@ class HomeCtrl extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		
+
 	}
 
 	/**
@@ -75,7 +60,8 @@ class HomeCtrl extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+		$departments = Departments::findOrFail($id);
+		return View('admin.departments.edit',compact('departments'));
 	}
 
 	/**
@@ -84,9 +70,11 @@ class HomeCtrl extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id,Request $request)
 	{
-		//
+		$departments = Departments::findOrFail($id);
+		$departments->update($request->all());
+		return redirect()->to(Url('admin/departments'));
 	}
 
 	/**
@@ -97,7 +85,10 @@ class HomeCtrl extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$departments = Departments::findOrFail($id);
+		$departments->delete();
+		return redirect()->to(Url('admin/departments'));
+
 	}
 
 }
