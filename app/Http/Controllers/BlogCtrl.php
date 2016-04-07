@@ -44,7 +44,7 @@ class BlogCtrl extends Controller {
 			'title_en' => 'required|min:5',
 			'image' =>'image|required',
 			'content_ar' =>'required',
-			'content_ar' =>'required',
+			'content_en' =>'required',
 			'tags_ar' =>'required',
 			'tags_en' =>'required',
 		],Blog::$rules);

@@ -1,7 +1,7 @@
  @extends('admin.layout')
 
 	@section('title')
-	testimonials
+	اراء العملاء
 	@endsection
 
 	@section('content')
@@ -14,7 +14,7 @@
 		<div class="portlet box green">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="icon-users"></i>testimonials 
+					<i class="icon-users"></i>اراء العملاء
 				</div>
 				<div class="tools">
 					<a href="javascript:;" class="collapse" data-original-title="" title="">

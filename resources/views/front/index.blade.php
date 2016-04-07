@@ -172,8 +172,8 @@
                         <div id="slider-3" class="owl-carousel">
                             <!-- <div class="cust-img"> <img class="img-responsive" src="img/user-face.jpg"> </div>-->
                             @foreach($testimonials as $test)
-                            <div class="item">
-                                <div class="detal">
+                            <div class="item" >
+                                <div class="detal" >
                                     <h3>{!!$test['name_'.Session::get('local')]!!}</h3>
                                     <p>{!!$test['text_'.Session::get('local')]!!}</p>
                                 </div>
@@ -187,7 +187,7 @@
         </div>
     </section>
     @if(count($clinic)>0)
-    <section class="client">
+    <section class="client" style="padding-bottom: 15px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -195,7 +195,8 @@
                         <div id="client" class="owl-carousel">
                             @foreach($clinic as $client)
                             <div class="item">
-                                <div class="detal"> <img title="{!!$client['title_'.Session::get('local')]!!}" src="{!!Url('/')!!}/uploads/clinic/{!!$client->img!!}"> </div>
+                                <div class="detal" style="height: 85px;min-height: 75px;overflow: hidden;"> 
+                                    <img title="{!!$client['title_'.Session::get('local')]!!}" src="{!!Url('/')!!}/uploads/clinic/{!!$client->img!!}"> </div>
                             </div>
                            @endforeach
                         </div>

@@ -4,20 +4,17 @@
 	@endsection
 	@section('content')
 		<div class="col-lg-10">
-			@if(count($errors) > 0)
-				<div class="row">
-					<div class="alert alert-danger">
-						<strong>عفواً !</strong> حصلت مشكله ما. من فضلك تفقد مدخلاتك.
-					</div>
+			@if (count($errors) > 0)
+				<div class="alert alert-danger">
+					<strong>خطأ!</strong> يوجد بعض المشاكل عند الادخال.<br><br>
+					<ul>
+						@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+						@endforeach
+					</ul>
 				</div>
 			@endif
-			@if(session('message'))
-				<div class="row">
-					<div class="alert alert-success">
-						<strong>تم حفظ البيانات بنجاح</strong> 
-					</div>
-				</div>
-			@endif
+				
 
 		{!! Form::model($settings,['method' => 'PATCH', 'action' => ['SettingsCtrl@update',$settings->id], 'class' => 'form-horizontal','files'=>true]) !!}
 		
@@ -60,7 +57,7 @@
 		    </div>
 			<div class="form-group @if($errors->first('logo')) has-error @endif">
 			    {!! Form::label('logo', 'اللوجو') !!}
-			    {!! Form::file('logo', null, ['class' => 'form-control' ]) !!}
+			    {!! Form::file('logo', null , ['class' => 'form-control' ]) !!}
 			    <small class="text-danger">{{ $errors->first('logo') }}</small>
 			</div>
 			<div class="form-group @if($errors->first('phone')) has-error @endif">

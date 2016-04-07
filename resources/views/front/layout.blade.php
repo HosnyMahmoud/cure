@@ -138,7 +138,6 @@ $settings = Settings::first();
     </header>
 
         @yield('content')
-
     <section class="footer">
         <div class="container">
             <div class="row">

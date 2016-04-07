@@ -7,14 +7,14 @@
 	{!! Form::open(['action'=>'ClinicCtrl@store','files'=>true])!!}
 		<table class="table table-hover table-responsive">
 			<tr>
-				<td>العنوان بالعربى</td>
+				<td>الاسم بالعربى</td>
 				<td><div class="form-group @if($errors->first('title_ar')) has-error @endif">
 				    {!! Form::text('title_ar', null, ['class' => 'form-control']) !!}
 				    <small class="text-danger">{{ $errors->first('title_ar') }}</small>
 				</div></td>
 			</tr>
 			<tr>
-				<td>العنوان بالإنجليزيه</td>
+				<td>الاسم بالإنجليزيه</td>
 				<td><div class="form-group @if($errors->first('title_en')) has-error @endif">
 				    {!! Form::text('title_en', null, ['class' => 'form-control']) !!}
 				    <small class="text-danger">{{ $errors->first('title_en') }}</small>

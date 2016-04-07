@@ -1,12 +1,17 @@
 <div class="form-group @if($errors->first('name_ar')) has-error @endif">
+    <div  class="col-md-11">
     {!! Form::label('name_ar', 'العنوان بالعربى') !!}
-    {!! Form::text('name_ar', null, ['class' => 'form-control', 'required' => 'required']) !!}
+    {!! Form::text('name_ar', null, ['class' => 'form-control']) !!}
     <small class="text-danger">{{ $errors->first('name_ar') }}</small>
+    </div>
 </div>
 <div class="form-group @if($errors->first('name_en')) has-error @endif">
-    {!! Form::label('name_en', 'العنوان بالإنجليزيه') !!}
-    {!! Form::text('name_en', null, ['class' => 'form-control', 'required' => 'required']) !!}
-    <small class="text-danger">{{ $errors->first('name_en') }}</small>
+    <div  class="col-md-11">
+        {!! Form::label('name_en', 'العنوان بالإنجليزيه') !!}
+        {!! Form::text('name_en', null, ['class' => 'form-control']) !!}
+        <small class="text-danger">{{ $errors->first('name_en') }}</small>
+    </div>
+    
 </div>
 
 <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
@@ -24,7 +29,7 @@
             <small class="text-danger">{{ $errors->first('videos') }}</small>
     </div>
 @if(@$type == 'edit')
-    @if(@$video->type == 0)
+    @if(@$video->type == 0 and  $video->videos !== '')
     <div class="form-group {{ $errors->has('type') ? ' has-error' : '' }}">
         <label class="col-md-2 control-label" style="text-align:right">الفيديو الحالى </label>
         <div class="col-md-10">

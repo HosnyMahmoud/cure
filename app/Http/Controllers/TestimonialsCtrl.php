@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Validator;
 
 use App\Testimonials;
 class TestimonialsCtrl extends Controller {
@@ -36,8 +37,18 @@ class TestimonialsCtrl extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		Testimonials::create($request->all());
-		return redirect()->to('/admin/testimonials');
+		$validator = Validator::make($request->all(),[
+  				 'name_ar'            	=> 'required',
+  				 'name_en'            	=> 'required',
+  				 'text_ar'            	=> 'required',
+  				 'text_en'            	=> 'required',
+		],Testimonials::$rules);
+		if($validator->fails()){
+			return redirect()->back()->withErrors($validator)->withInput();
+		}else{
+			Testimonials::create($request->all());
+			return redirect()->to('/admin/testimonials');
+		}		
 	}
 
 	/**
@@ -71,9 +82,19 @@ class TestimonialsCtrl extends Controller {
 	 */
 	public function update($id,Request $request)
 	{
-		$testimonials = Testimonials::findOrFail($id);
-		$testimonials->update($request->all());
-		return redirect()->to('/admin/testimonials');
+		$validator = Validator::make($request->all(),[
+  				 'name_ar'            	=> 'required',
+  				 'name_en'            	=> 'required',
+  				 'text_ar'            	=> 'required',
+  				 'text_en'            	=> 'required',
+		],Testimonials::$rules);
+		if($validator->fails()){
+			return redirect()->back()->withErrors($validator)->withInput();
+		}else{
+			$testimonials = Testimonials::findOrFail($id);
+			$testimonials->update($request->all());
+			return redirect()->to('/admin/testimonials');
+		}	
 
 	}
 

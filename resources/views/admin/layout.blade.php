@@ -53,6 +53,7 @@ License: You must have a valid license purchased only from themeforest(the above
 {!! Html::style('back/assets/admin/layout2/css/custom-rtl.css') !!}
 <!-- END THEME STYLES -->
 
+
 <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <!-- END HEAD -->
@@ -596,7 +597,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<span class="title">اراء العملاء</span>
 						</a>
 					</li>
-					
+
 					<li class="last hidden">
 						<a href="javascript:;">
 						<i class="icon-pointer"></i>

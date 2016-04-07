@@ -27,7 +27,7 @@ class AdminsCtrl extends Controller {
 			    'full_name'            	=> 'required',
 			],Admin::$rules);
 		if($validator->fails()){
-			return redirect()->back()->withErrors($validator);
+			return redirect()->back()->withErrors($validator)->withInput();
 		}else{
 			 $add =  Admin::create([
 			    	'full_name'=>$request->full_name,

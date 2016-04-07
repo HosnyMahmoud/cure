@@ -1,11 +1,11 @@
 			<div class="form-group @if($errors->first('name_ar')) has-error @endif">
 		        {!! Form::label('name_ar', 'العنوان بالعربى') !!}
-		        {!! Form::text('name_ar', null, ['class' => 'form-control', 'required' => 'required']) !!}
+		        {!! Form::text('name_ar', null, ['class' => 'form-control']) !!}
 		        <small class="text-danger">{{ $errors->first('name_ar') }}</small>
 		    </div>
 		    <div class="form-group @if($errors->first('name_en')) has-error @endif">
 		        {!! Form::label('name_en', 'العنوان بالإنجليزيه') !!}
-		        {!! Form::text('name_en', null, ['class' => 'form-control', 'required' => 'required']) !!}
+		        {!! Form::text('name_en', null, ['class' => 'form-control']) !!}
 		        <small class="text-danger">{{ $errors->first('name_en') }}</small>
 		    </div>
 
@@ -18,7 +18,7 @@
 
 		    <div class="form-group @if($errors->first('img')) has-error @endif">
 		        {!! Form::label('img', 'الصورة') !!}
-		        {!! Form::file('img', null, ['class' => 'form-control', 'required' => 'required']) !!}
+		        {!! Form::file('img', null, ['class' => 'form-control']) !!}
 		        <small class="text-danger">{{ $errors->first('img') }}</small>
 		    </div>
 

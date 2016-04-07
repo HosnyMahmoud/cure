@@ -34,7 +34,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public static $rules =[
 		'firstname.required'=>'الاسم الاول مطلوب',
 		'firstname.unique'=>' الاسم الاول مستخدم من قبل',
-		'lastname.required'=>'الاسم الاخبر مطلوب',
+		'lastname.required'=>'الاسم الاخير مطلوب',
 		'lastname.unique'=>'الاسم الاخير مستخدم من قبل',
 		'password.required'=>'كلمة المرور',
 		'phone.required'=>'رقم الهاتف مطلوب',
@@ -44,7 +44,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public static $rule =[
 		'firstname.required'=>'الاسم الاول مطلوب',
 		'firstname.unique'=>' الاسم الاول مستخدم من قبل',
-		'lastname.required'=>'الاسم الاخبر مطلوب',
+		'lastname.required'=>'الاسم الاخير مطلوب',
 		'lastname.unique'=>'الاسم الاخير مستخدم من قبل',
 		'phone.required'=>'رقم الهاتف مطلوب',
 		'email.required'=>'البريد الالكترونى مطلوب',

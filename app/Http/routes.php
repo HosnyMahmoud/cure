@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,6 +9,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+
 Route::get('/','HomeCtrl@index');
 
 Route::get('/videos','VideosCtrl@front');
@@ -41,7 +42,6 @@ Route::group(['middleware' => 'auth'], function()
 Route::get('admin/login','LoginCtrl@showAdminLogin');
 Route::post('admin/login','LoginCtrl@postAdminLogin');
 Route::get('admin/logout','LoginCtrl@AdminLogout');
-
 
 Route::group(['middleware' => 'authAdmin'], function()
 {
