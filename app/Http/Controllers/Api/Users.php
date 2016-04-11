@@ -65,14 +65,37 @@ class Users extends Controller {
 					}else{
 						$this->auth = Auth::client();
 						if ($this->auth->attempt($bag->only('email', 'password'))){
-							return response()->json(['status' => '200','message'=>'succssfuly Logged in'],200);
+
+							$data['id'] = Auth::client()->get()->id;
+							$data['email'] = Auth::client()->get()->email;
+							$data['firstname'] = Auth::client()->get()->firstname;
+							$data['lastname'] = Auth::client()->get()->lastname;
+						
+							return response()->json([
+								'status' => '200',
+								'id'=>$data['id'],
+								'email'=>$data['email'],
+								'firstname'=>$data['firstname'],
+								'lastname'=>$data['lastname'],
+								'message'=>'succssfuly Logged in'
+								],200);
 						}else{
 							return response()->json(['status' => '401','message'=>'Unauthorized : Wrong Email Or Password'],401);
 						}
 					}
 				}else{
-					//dd(Auth::client()->get()->id);
-					return response()->json(['status' => '400','message'=>'Bad Request : Already Logged In'],400);
+					$data['id'] = Auth::client()->get()->id;
+					$data['email'] = Auth::client()->get()->email;
+					$data['firstname'] = Auth::client()->get()->firstname;
+					$data['lastname'] = Auth::client()->get()->lastname;
+					return response()->json([
+						'status' => '400',
+						'id'=>$data['id'],
+						'email'=>$data['email'],
+						'firstname'=>$data['firstname'],
+						'lastname'=>$data['lastname'],
+						'message'=>'Bad Request : Already Logged In'
+						],400);
 
 				}	
 			}else{
